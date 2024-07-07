@@ -31,7 +31,7 @@ class ContactController extends Controller
         Mail::to('your_email@example.com')->send(new ContactMail($validatedData));
 
         // Redirect back with success message
-        return redirect()->route('contactUs')->with('success', 'Thnk you for reaching out! Your message has been sent!');
+        return redirect()->route('contactUs')->with('success', 'Thank you for reaching out! Your message has been sent!');
     }
 }
 

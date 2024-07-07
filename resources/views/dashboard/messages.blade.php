@@ -1,18 +1,17 @@
 @extends('layouts.dashMain')
 
 @section('content')
-   
 <div class="right_col" role="main">
-    <div class="">
-      <div class="page-title">
-        <div class="title_left">
-          <h3>Manage Messages</h3>
-        </div>
-
-        <div class="title_right">
-          <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for...">
+  <div class="">
+    <div class="page-title">
+      <div class="title_left">
+        <h3>Manage Messages</h3>
+      </div>
+      
+      <div class="title_right">
+        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for...">
               <span class="input-group-btn">
                 <button class="btn btn-secondary" type="button">Go!</button>
               </span>
@@ -22,7 +21,15 @@
       </div>
 
       <div class="clearfix"></div>
-
+      @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 20px;">
+            {{ session('success') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endif
+      
       <div class="row">
         <div class="col-md-12 col-sm-12 ">
           <div class="x_panel">
@@ -57,25 +64,20 @@
                   </tr>
                 </thead>
                 <tbody>
+                  @foreach($contacts as $contact)
                   <tr>
-                    <td>{{ $contact['name'] }}</td>
-                    <td>{{ $contact['email'] }}</td>
-                    <td><img src="{{asset('dashboard/assets/images/edit.png')}}" alt="Edit"></td>
-                    <td><img src="{{asset('dashboard/assets/images/delete.png')}}" alt="Delete"></td>
+                    <td>{{ $contact->name }}</td>
+                    <td>{{ $contact->email }}</td>
+                    <td><a href="{{ route('showMessage', $contact->id) }}"><img src="{{asset('dashboard/assets/images/edit.png')}}" alt="Show"></a></td>
+                    <td>
+                        <form action="{{ route('deleteMessage', $contact->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" style="border:none; background:none;"><img src="{{asset('dashboard/assets/images/delete.png')}}" alt="Delete"></button>
+                        </form>
+                    </td>
                   </tr>
-                  {{-- <tr>
-                    <td>First Name and Last Name</td>
-                    <td>mail@example.com</td>
-                    <td><img src="{{asset('dashboard/assets/images/edit.png')}}" alt="Edit"></td>
-                    <td><img src="{{asset('dashboard/assets/images/delete.png')}}" alt="Delete"></td>
-                  </tr>
-                  <tr>
-                    <td>First Name and Last Name</td>
-                    <td>mail@example.com</td>
-                    <td><img src="{{asset('dashboard/assets/images/edit.png')}}" alt="Edit"></td>
-                    <td><img src="{{asset('dashboard/assets/images/delete.png')}}" alt="Delete"></td>
-                  </tr> --}}
-                  
+                  @endforeach
                 </tbody>
               </table>
             </div>
