@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 class DashController extends Controller
 {
     public function home(){
-        return view ('dashboard.users');
+        $title = 'Home';
+        return view ('dashboard.users', compact('title'));
     }
 
 

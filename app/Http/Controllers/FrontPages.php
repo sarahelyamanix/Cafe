@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class FrontPages extends Controller
 {
@@ -24,7 +25,7 @@ class FrontPages extends Controller
     // }
     public function menu(){
         $title = 'Drink Menu';
-        return view('menu', compact('title'));
-    }
+        $categories = Category::all();
+        return view('menu', compact('categories', 'title'));    }
     
 }

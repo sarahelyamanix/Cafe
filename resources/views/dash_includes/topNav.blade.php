@@ -30,27 +30,15 @@
                 <a class="dropdown-item">
                   <span class="image"><img src="{{asset('dashboard/assets/images/img.jpg')}}" alt="Profile Image" /></span>
                   <span>
-                    <span>{{ $contact->name }}</span>
+                    {{-- <span>{{ $contact->name }}</span>
                     <span class="time">{{ $contact->created_at->diffForHumans() }}</span>
                   </span>
                   <span class="message">
                     {{ $contact->message }}
-                  </span>
+                  </span> --}}
                 </a>
               </li>
-              {{-- <li class="nav-item">
-                <a class="dropdown-item">
-                  <span class="image"><img src="{{asset('dashboard/assets/images/img.jpg')}}" alt="Profile Image" /></span>
-                  <span>
-                    <span>John Smith</span>
-                    <span class="time">3 mins ago</span>
-                  </span>
-                  <span class="message">
-                    Film festivals used to be do-or-die moments for movie makers. They were where...
-                  </span>
-                </a>
-              </li>
-              <li class="nav-item">
+              {{-- {{-- <li class="nav-item">
                 <a class="dropdown-item">
                   <span class="image"><img src="{{asset('dashboard/assets/images/img.jpg')}}" alt="Profile Image" /></span>
                   <span>
@@ -62,6 +50,18 @@
                   </span>
                 </a>
               </li> --}}
+              <li class="nav-item">
+                <a class="dropdown-item">
+                  <span class="image"><img src="{{asset('dashboard/assets/images/img.jpg')}}" alt="Profile Image" /></span>
+                  <span>
+                    <span>John Smith</span>
+                    <span class="time">3 mins ago</span>
+                  </span>
+                  <span class="message">
+                    Film festivals used to be do-or-die moments for movie makers. They were where...
+                  </span>
+                </a>
+              </li> -
               {{-- <li class="nav-item">
                 <a class="dropdown-item">
                   <span class="image"><img src="{{asset('dashboard/assets/images/img.jpg')}}" alt="Profile Image" /></span>

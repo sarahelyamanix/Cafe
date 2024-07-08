@@ -21,7 +21,14 @@
       </div>
 
       <div class="clearfix"></div>
-
+      @if(session('success'))
+      <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 20px;">
+          {{ session('success') }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      @endif
       <div class="row">
         <div class="col-md-12 col-sm-12 ">
           <div class="x_panel">
@@ -55,19 +62,20 @@
                   </tr>
                 </thead>
 
-
                 <tbody>
+                  @foreach ($categories as $category)
                   <tr>
-                    <td>Category</td>
-                    <td><img src="{{asset('dashboard/assets/images/edit.png')}}" alt="Edit"></td>
-                    <td><img src="{{asset('dashboard/assets/images/delete.png')}}" alt="Delete"></td>
+                    <td>{{ $category->name }}</td>
+                    <td><a href="{{ route('editCategory', $category->id) }}"><img src="{{asset('dashboard/assets/images/edit.png')}}" alt="Edit"></a></td>
+                    <td>
+                      <form action="{{ route('deleteCategory', $category->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" style="border: none; background-color: transparent;"><img src="{{asset('dashboard/assets/images/delete.png')}}" alt="Delete"></button>
+                    </form>
+                    </td>
                   </tr>
-                  <tr>
-                    <td>Category</td>
-                    <td><img src="{{asset('dashboard/assets/images/edit.png')}}" alt="Edit"></td>
-                    <td><img src="{{asset('dashboard/assets/images/delete.png')}}" alt="Delete"></td>
-                  </tr>
-                  
+                  @endforeach
                 </tbody>
               </table>
             </div>
