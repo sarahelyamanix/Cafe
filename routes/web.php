@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\CheckActive;
 use App\Http\Controllers\FrontPages;
 use App\Http\Controllers\DashController;
 use App\Http\Controllers\ContactController;
@@ -9,7 +10,10 @@ use App\Http\Controllers\UserController;
 
 Route::prefix('admin')->group(function () {
     
-    Route::get('home', [DashController::class, 'home'])->middleware('verified')->name('admin/home');
+    Route::get('home', [DashController::class, 'home'])
+      ->middleware(['verified', CheckActive::class])
+        ->name('admin/home');
+        
     Route::get('login', [DashController::class, 'login'])->name('login');
     Route::post('logout', [DashController::class, 'logout'])->name('logout');
 
