@@ -1,14 +1,16 @@
 <div class="top_nav">
-    <div class="nav_menu">
-        <div class="nav toggle">
-          <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-        </div>
-        <nav class="nav navbar-nav">
+  <div class="nav_menu">
+    <div class="nav toggle">
+      <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+    </div>
+    @auth
+    <nav class="nav navbar-nav">
         <ul class=" navbar-right">
           <li class="nav-item dropdown open" style="padding-left: 15px;">
             <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-              <img src="{{asset('dashboard/assets/images/img.jpg')}}" alt="">John Doe
+              <img src="{{asset('dashboard/assets/images/img.jpg')}}" alt="">{{ Auth::user()->name }}
             </a>
+            @endauth
             <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
               <a class="dropdown-item"  href="javascript:;"> Profile</a>
                 <a class="dropdown-item"  href="javascript:;">
@@ -50,6 +52,8 @@
                   </span>
                 </a>
               </li> --}}
+
+                  
               <li class="nav-item">
                 <a class="dropdown-item">
                   <span class="image"><img src="{{asset('dashboard/assets/images/img.jpg')}}" alt="Profile Image" /></span>

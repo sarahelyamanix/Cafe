@@ -48,7 +48,15 @@
                         <form action="{{ route('updateCategory', $category->id) }}" method="POST" data-parsley-validate class="form-horizontal form-label-left">
                             @csrf
                             @method('PUT')    
-                                                
+                            @if ($errors->any())
+                            <div class="alert alert-danger" role="alert">
+                              <ul>
+                                @foreach ($errors->all() as $error)
+                                  <li>{{ $error }}</li>
+                                @endforeach
+                              </ul>
+                            </div>
+                          @endif       
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="name">Edit Category <span class="required">*</span>
                                 </label>
