@@ -59,9 +59,9 @@ class CategoryController extends Controller
         $category = Category::findOrFail($request->id);
 
         // Temporarily commenting out the beverages check since the table doesn't exist yet
-        // if ($category->beverages()->count() > 0) {
-        //     return redirect()->route('dashboard.categories')->with('error', 'Category cannot be deleted because it has associated beverages.');
-        // }
+        if ($category->beverages()->count() > 0) {
+            return redirect()->route('dashboard.categories')->with('error', 'Category cannot be deleted because it has associated beverages.');
+        }
 
         $category->delete();
 

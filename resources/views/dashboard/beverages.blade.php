@@ -21,7 +21,14 @@
       </div>
 
       <div class="clearfix"></div>
-
+      @if(session('success'))
+      <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 20px;">
+          {{ session('success') }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      @endif
       <div class="row">
         <div class="col-md-12 col-sm-12 ">
           <div class="x_panel">
@@ -59,28 +66,21 @@
 
 
                 <tbody>
+                  @foreach($beverages as $beverage)
                   <tr>
-                    <td>1 Jan 2023</td>
-                    <td>Title</td>
-                    <td>Yes</td>
-                    <td><img src="{{asset('dashboard/assets/images/edit.png')}}" alt="Edit"></td>
-                    <td><img src="{{asset('dashboard/assets/images/delete.png')}}" alt="Delete"></td>
+                      <td>{{ $beverage->created_at->format('d M Y') }}</td>
+                      <td>{{ $beverage->title }}</td>
+                      <td>{{ $beverage->published ? 'Yes' : 'No' }}</td>
+                          <td><a href="{{ route('editBeverage', $beverage->id) }}"><img src="{{asset('dashboard/assets/images/edit.png')}}" alt="Edit"></a></td>
+                          <td><form action="{{ route('deleteBeverage') }}" method="POST">
+                              @csrf
+                              @method('DELETE')
+                              <input type="hidden" value="{{$beverage->id}}" name="id">
+                              <button type="submit" style="border: none; background-color: transparent;" onclick="return confirm('Are you sure you want to delete this beverage?')"><img src="{{asset('dashboard/assets/images/delete.png')}}" alt="Delete"></button>
+                            </form>
+                      </td>
                   </tr>
-                  <tr>
-                    <td>1 Jan 2023</td>
-                    <td>Title</td>
-                    <td>Yes</td>
-                    <td><img src="{{asset('dashboard/assets/images/edit.png')}}" alt="Edit"></td>
-                    <td><img src="{{asset('dashboard/assets/images/delete.png')}}" alt="Delete"></td>
-                  </tr>
-                  <tr>
-                    <td>1 Jan 2023</td>
-                    <td>Title</td>
-                    <td>Yes</td>
-                    <td><img src="{{asset('dashboard/assets/images/edit.png')}}" alt="Edit"></td>
-                    <td><img src="{{asset('dashboard/assets/images/delete.png')}}" alt="Delete"></td>
-                  </tr>
-                  
+              @endforeach
                 </tbody>
               </table>
             </div>

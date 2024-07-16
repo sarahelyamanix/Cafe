@@ -1,12 +1,18 @@
 <div id="special" class="tm-page-content">
-    <div class="tm-special-items">
+  <div class="tm-special-items">
+      @foreach ($specialItems as $specialItem)
       <div class="tm-black-bg tm-special-item">
-        <img src="{{asset('assets/img/special-01.jpg')}}" alt="Image">
-        <div class="tm-special-item-description">
-          <h2 class="tm-text-primary tm-special-item-title">Special One</h2>
-          <p class="tm-special-item-text">Here is a short text description for the first special item. You are not allowed to redistribute this template ZIP file.</p>  
-        </div>
+          <img src="{{ asset('assets/images/' . $specialItem->image) }}" alt="{{ $specialItem->title }}">
+          <div class="tm-special-item-description">
+              <h2 class="tm-text-primary tm-special-item-title">{{ $specialItem->title }}</h2>
+              <p class="tm-special-item-text">{{ $specialItem->content }}</p>
+              <!-- Add any other fields you need to display -->
+          </div>
       </div>
+      @endforeach
+  </div>
+</div>
+      {{-- </div>
       <div class="tm-black-bg tm-special-item">
         <img src="{{asset('assets/img/special-02.jpg')}}" alt="Image">
         <div class="tm-special-item-description">
@@ -43,4 +49,4 @@
         </div>
       </div>                      
     </div>            
-  </div>
+  </div> --}}

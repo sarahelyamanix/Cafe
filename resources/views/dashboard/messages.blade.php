@@ -73,7 +73,7 @@
                         <form action="{{ route('deleteMessage', $contact->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" style="border:none; background:none;"><img src="{{asset('dashboard/assets/images/delete.png')}}" alt="Delete"></button>
+                            <button type="submit" style="border:none; background:none;" onclick="return confirm('Are you sure you want to delete this message?')"><img src="{{asset('dashboard/assets/images/delete.png')}}" alt="Delete"></button>
                         </form>
                     </td>
                   </tr>

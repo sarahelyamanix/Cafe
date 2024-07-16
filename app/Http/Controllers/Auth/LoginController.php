@@ -46,6 +46,9 @@ class LoginController extends Controller
     if ($user && !$user->is_active) {
         $errors = [$this->username() => 'Your account is not active. Please contact the administrator.'];
     }
+    if ($user && !$user->email) {
+        $errors = [$this->username() => 'Please insert your username.'];
+    }
 
     if ($request->expectsJson()) {
         return response()->json($errors, 422);
@@ -69,12 +72,35 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
-
+/**
+     * Determine the field to be used for authentication (username).
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return array
+     */
+    protected function credentials(Request $request)
+    {
+        return [
+            'username' => $request->input('username'),
+            'password' => $request->input('password'),
+        ];
+    }
     /**
      * Where to redirect users after login.
      *
+     * 
+     * 
+    
+
+
+     
      * @var string
      */
+    public function username()
+    {
+        return 'username';
+    }
+
     protected $redirectTo = 'admin/home';
 
     /**

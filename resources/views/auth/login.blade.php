@@ -16,9 +16,9 @@
                     @csrf
                     <h1>Login Form</h1>
                     <div>
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                               placeholder="Email" required value="{{ old('email') }}">
-                        @error('email')
+                        <input type="username" class="form-control @error('username') is-invalid @enderror" name="username"
+                               placeholder="Username" required value="{{ old('username') }}">
+                        @error('username')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>

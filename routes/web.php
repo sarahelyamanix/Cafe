@@ -7,15 +7,24 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BeverageController;
 
 Route::prefix('admin')->group(function () {
     
     Route::get('home', [DashController::class, 'home'])
-      ->middleware(['verified', CheckActive::class])
+        ->middleware(['verified', CheckActive::class])
         ->name('admin/home');
         
     Route::get('login', [DashController::class, 'login'])->name('login');
     Route::post('logout', [DashController::class, 'logout'])->name('logout');
+
+     // Beverages routes
+     Route::get('beverages', [BeverageController::class, 'index'])->name('dashboard.beverages');
+     Route::get('beverages/create', [BeverageController::class, 'create'])->name('addBeverage');
+     Route::post('beverages/store', [BeverageController::class, 'store'])->name('storeBeverage');
+     Route::get('beverages/edit/{beverage}', [BeverageController::class, 'edit'])->name('editBeverage');
+     Route::put('/beverages/{beverage}', [BeverageController::class, 'update'])->name('updateBeverage');
+     Route::delete('destroyBeverage', [BeverageController::class, 'destroy'])->name('deleteBeverage');
 
     Route::get('messages', [MessageController::class, 'index'])->name('indexMessages');
     Route::get('messages/{id}', [MessageController::class, 'show'])->name('showMessage');
