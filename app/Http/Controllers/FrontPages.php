@@ -30,7 +30,6 @@ class FrontPages extends Controller
     public function menu()
     {
         $title = 'Drink Menu';
-        // Fetch categories and their associated published beverages (not special)
         $categories = Category::with(['beverages' => function ($query) {
             $query->where('published', true)
                   ->where('special', false);
@@ -39,4 +38,4 @@ class FrontPages extends Controller
         return view('menu', compact('categories', 'title'));
     }
     
-}
+}    
