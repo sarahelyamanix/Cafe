@@ -30,12 +30,17 @@ class FrontPages extends Controller
     public function menu()
     {
         $title = 'Drink Menu';
+
+        // Assuming the special items category has an ID of 1, modify as needed
+        $specialCategoryId = Category::where('name', 'Special Items')->first()->id;
+
         $categories = Category::with(['beverages' => function ($query) {
             $query->where('published', true)
                   ->where('special', false);
-        }])->get();
+        }])
+        ->where('id', '!=', $specialCategoryId)
+        ->get();
     
         return view('menu', compact('categories', 'title'));
     }
-    
-}    
+}

@@ -12,9 +12,8 @@ use App\Http\Controllers\BeverageController;
 Route::prefix('admin')->group(function () {
     Route::get('home', [DashController::class, 'home'])
         ->middleware(['verified', CheckActive::class])
-        ->name('admin.home');
+        ->name('admin/home');
     
-    Route::get('dashboard', [DashController::class, 'index'])->name('dashboard');
 
     Route::get('messages', [DashController::class, 'showMessages'])->name('messages');
 

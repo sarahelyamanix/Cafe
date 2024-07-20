@@ -73,7 +73,7 @@
                             <div class="item form-group">
                                 <label for="price" class="col-form-label col-md-3 col-sm-3 label-align">Price <span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input id="price" class="form-control" type="number" name="price" required="required" value="{{ old('price', $beverage->price) }}">
+                                    <input id="price" class="form-control" type="float" name="price" required="required" value="{{ old('price', $beverage->price) }}">
                                     @error('price')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
